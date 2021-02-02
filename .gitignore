@@ -1,5 +1,4 @@
 # ignore that:
-appsettings.json
-appsettings.Development.json
-/SimpleBlog/Properties/*
-/blog/*
+SimpleBlog/appsettings.json
+SimpleBlog/appsettings.Development.json
+SimpleBlog/wwwroot/content/blog/*
