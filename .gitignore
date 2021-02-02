@@ -1,0 +1,5 @@
+# ignore that:
+appsettings.json
+appsettings.Development.json
+/SimpleBlog/Properties/*
+/blog/*
