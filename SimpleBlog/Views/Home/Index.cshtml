@@ -1,0 +1,56 @@
+﻿@model IndexViewModel
+
+@{
+    ViewBag.Title = "Blog Website";
+    ViewBag.Description = "Your favorite blog.";
+    ViewBag.Keywords= "Games, books and movies!";
+}
+@*@<h2>Home page</h2>
+    <img class="main-img" width="500" />
+*@
+<div class="main-img">
+    <span class="title">Amazing Blog</span>
+</div>
+
+@*
+
+        <ul>
+            @foreach (var post in Model)
+            {
+                <li>
+                    <a asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+                        @post.Title
+                    </a>
+                </li>
+            }
+        </ul>
+    *@
+
+<div class="container">
+        @foreach (var post in Model.Posts)
+        {
+          var image_path = $"/Image/{post.Image}";
+        <a class="post" asp-controller="Home" asp-action="Post" asp-route-id="@post.Id">
+            <img src="@image_path" width="550" />
+            <span class="title">@post.Title</span>
+
+        </a>
+        }
+<div class="pages-navig">
+    @if (Model.PageNumber > 1)
+    {
+        <a class="btn" asp-action="Index" asp-controller="Home" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-category="@(String.IsNullOrEmpty(Model.Category) ? null :Model.Category)">Previous</a>
+    }
+
+    @for (int i = 1; i <= Model.PagesCount; i++)
+    {   
+        <a style="width:8%;" class="btn" asp-action="Index" asp-controller="Home" asp-route-pageNumber="@i" asp-route-category="@(String.IsNullOrEmpty(Model.Category) ? null :Model.Category)">@i</a>
+
+    }
+
+    @if (Model.NextPage)
+    {
+        <a class="btn" asp-action="Index" asp-controller="Home" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-category="@(String.IsNullOrEmpty(Model.Category) ? null :Model.Category)">Next</a>
+    }
+</div>
+</div>

@@ -1,0 +1,91 @@
+﻿@model Post
+
+@{
+    ViewBag.Title = Model.Title;
+    ViewBag.Description = Model.Description;
+    ViewBag.Keywords = $"{Model.Tags?.Replace(",", " ")} {Model.Category}";
+}
+
+@*@if (!String.IsNullOrEmpty(Model.Image))
+{
+    var image_path = $"/Image/{Model.Image}";
+    <img src="@image_path" width="550" />
+}
+
+<h1 class="">@Model.Title</h1>
+<hr />
+
+<p class="lead">@Model.Body</p>*@
+<div class="container">
+    <div class="post">
+
+        @if (!String.IsNullOrEmpty(Model.Image))
+        {
+            var image_path = $"/Image/{Model.Image}";
+            <img src="@image_path" />
+            <span class="title">@Model.Title</span>
+        }
+    </div>
+    <div class="post-body">
+        @Html.Raw(Model.Body)
+    </div>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <hr />
+        <h5 class="display-5">Comments</h5>
+        <hr />
+
+        <div class="comment-section">
+            @{
+                await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = 0,Author=User.Identity.Name });
+            }
+            @foreach (var c in Model.MainComments)
+            {
+                <div class="comment">
+                    <div class="card">
+                        <div class="card-header">
+                           @c.Author: @c.Created
+                        </div>
+                        <div class="card-body">
+                            @c.Message
+                        </div>
+                        <div cite="card-body card" style="text-align:end">
+                            @{
+                                await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id, Author = User.Identity.Name });
+                            }
+                        </div>
+                    </div>
+                    <div>
+
+                        @foreach (var sc in c.SubComments)
+                        {
+                            <div class="card" style="margin-left:.5rem">
+                                <div class="card-header">
+                                    @sc.Author: @sc.Created
+                                </div>
+                                <div class="card-body">
+                                    @sc.Message
+                                </div>
+
+                            </div>
+
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+                                }
+                                else
+                                {
+<div class="card text-center"  style="margin-top:2rem;margin-bottom:4rem;">
+    <div class="card-header">
+        Comments
+    </div>
+    <div class="card-body">
+        <h1 class="card-title">To see comments you must be signed in</h1>
+        <a class="btn btn-warning" asp-controller="Auth" asp-action="Login">Sign In</a>
+    </div>
+</div>
+                                }
+
+</div>

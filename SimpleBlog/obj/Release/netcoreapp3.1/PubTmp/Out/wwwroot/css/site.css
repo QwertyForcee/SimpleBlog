@@ -1,0 +1,70 @@
+﻿a{
+    color: black;
+    font-family:Roboto;
+    text-decoration: none;
+    font-size:large ;
+}
+a:hover{
+    text-decoration:underline
+}
+h2,h1{
+    font-family:Roboto ;
+    padding:1rem;
+    text-align:center;
+}
+nav {
+    text-align: center;
+    height: 83px;
+    background-image: url(../content/static/navfon.jpg)
+}
+nav a {
+    display:inline-block;
+    padding: 35px;
+}
+
+.main-img{
+    height:450px;
+    background-image:url(../content/static/thisone.jpg);
+    background-position:center;
+    background-size:cover;
+    position:relative;  
+    margin-bottom:1rem;
+
+}
+.title{
+    position:absolute;
+
+    color:white;
+    font-size:40px;
+    left:50%;
+    transform: translateX(-50%);
+    top:26.7%;
+    text-shadow: 0 0 8px #f66e49
+}
+.container{
+    max-width:800px;
+    width:100%;
+    margin:auto;
+    margin-top:1rem;
+}
+.post{
+    position:relative;
+    display:flex;
+    height:500px;
+    box-shadow: 0 0 7px 0 black
+
+}
+.post img{
+    width:100%;
+    object-fit:cover;
+}
+.post-body{
+    margin:-5px 5px 0;
+    background-color:aquamarine;
+    padding:20px 5px;
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+}
+.no-shadow{
+    box-shadow:none;
+}
