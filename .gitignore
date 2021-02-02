@@ -2,3 +2,4 @@
 SimpleBlog/appsettings.json
 SimpleBlog/appsettings.Development.json
 SimpleBlog/wwwroot/content/blog/*
+SimpleBlog/Properties/*
